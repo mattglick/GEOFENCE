@@ -1,27 +1,58 @@
-# coordinates.csv file is created from the website at https://epics-evei.github.io/
-# coordinates.csv file must be in the same folder in order for python to find it
-# code won't work on browser compiler like replit, will work on Visual Studio
-
-import serial # must install pyserial library
 import time
+import serial
 import csv
 
-arduinoData = serial.Serial('com5', 115200) # Find which com port the arduino/raspberry pi is connected to
+coordinateFilename = "coordinates"
+
+def initialize():
+    ser = 0
+    while ser == 0:
+        try:
+            ser = serial.Serial('COM8', 9600)  # open serial port
+        except:
+            print("Busy Port: Try closing Raspberry Pi IDE(Thonny)")
+            time.sleep(0.3)
+            pass
+    return ser
 
 # Writes variable x to the arduino
-def arduinoWrite(x):
+def serialWrite(x, ser):
     time.sleep(1) # Required to give code time to upload, may need to test with increasing/decreasing it
     cmd = str(x)
     cmd = cmd + '\r'
-    arduinoData.write(cmd.encode()) # Encodes cmd to transfer to arduino
+    print(f"Sending Command: [{cmd}]")
+    ser.write(cmd.encode()) # Encodes cmd to transfer to pico
     time.sleep(0.05)
 
-    data = arduinoData.readline() 
-    print(data) # verifies what the arduino is reading
+    reply = b''
+
+    for _ in range(len(cmd)):
+        a = ser.read() # Read the loopback chars and ignore
+
+    coordinateTransferred = False
+    while True:
+        while True:
+            a = ser.read()
+
+            if a== b'\r':
+                break
+
+            else:
+                reply += a
+            time.sleep(0.01)
+        if coordinateTransferred == False:
+            print(f"\nReply was: {reply}")
+            print("\n Connection Confirmed")
+            coordinateTransferred = True
+        else:
+            print(f"{reply}")
+        reply = b''
+
+    ser.close()
 
 # Turns coordinates.csv file into one string
 def get_coordinates():
-  filename = open('coordinates.csv', 'r')
+  filename = open(f'{coordinateFilename}.csv', 'r')
   data = list(csv.reader(filename, delimiter = ","))
   filename.close()
 
@@ -35,5 +66,5 @@ def get_coordinates():
   # Could transfer coordinates one at a time using a loop if that turns out to be easier
   return(big_string)
 
-first_lat = get_coordinates()
-arduinoWrite(first_lat)
+coordinate_data = get_coordinates() # Gets coordinates from coordinates.csv and changes the format
+serialWrite(coordinate_data, initialize()) # Transmits data to raspberry pi and returns raspberry pi response
