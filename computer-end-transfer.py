@@ -42,10 +42,10 @@ def serialWrite(x, ser):
             time.sleep(0.01)
         if coordinateTransferred == False:
             print(f"\nReply was: {reply}")
-            print("\n Connection Confirmed")
+            print("\nConnection Confirmed")
             coordinateTransferred = True
         else:
-            print(f"{reply}")
+            print(f"\n{reply}")
         reply = b''
 
     ser.close()
