@@ -7,7 +7,9 @@ If Running Code on Raspberry Pi Pico For First Time:
 Only one Pi has all of the necessary installed and therefore is fully functional.
 Working on the others will not work unless all of the libraries are there. See the 
 transition document for more information on this.
-There is also a specific wiring needed for everything, this would be in the transition document. 
+There is also a specific wiring needed for everything,
+';iuytre	\
+this would be in the transition document. 
 
 Thing To Know When Modifying Code:
 This code is running on CircuitPython (not MicroPython - they're slightly different),
@@ -344,11 +346,12 @@ if __name__ == '__main__':
         
         #lcd_uart.write(b'                ')  # Clear display
         
-        if is_within_polygon(outerPolygon, (float(latitude_avg), float(longitude_avg))) is True:
+        if is_within_polygon(outerPolygon, (float(latitude_avg), float(longitude_avg))) is True and is_within_polygon(innerPolygon, (float(latitude_avg), float(longitude_avg))) is False:
             lcd_uart.write(b"IN                              ")  # For 16x2 LCD
-        else:
-            
+            print("IN")
+        else:s
             lcd_uart.write(b"OUT                             ")  # For 16x2 LCD
+            print("OUT")
         
         #lcd_uart.write(b'                ')  # Clear display
         
