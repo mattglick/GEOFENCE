@@ -8,7 +8,6 @@ Only one Pi has all of the necessary installed and therefore is fully functional
 Working on the others will not work unless all of the libraries are there. See the 
 transition document for more information on this.
 There is also a specific wiring needed for everything,
-';iuytre	\
 this would be in the transition document. 
 
 Thing To Know When Modifying Code:
@@ -315,7 +314,7 @@ if __name__ == '__main__':
     sensor = adafruit_bno055.BNO055_I2C(i2c)                        # Initializes IMU
 
     last_val = 0xFFFF
-    
+
     gps_uart = initialize_gps()                                     # Initializes GPS
     lcd_uart = initialize_lcd(backlight_red=255, backlight_green=1, backlight_blue=255)
     
@@ -349,7 +348,7 @@ if __name__ == '__main__':
         if is_within_polygon(outerPolygon, (float(latitude_avg), float(longitude_avg))) is True and is_within_polygon(innerPolygon, (float(latitude_avg), float(longitude_avg))) is False:
             lcd_uart.write(b"IN                              ")  # For 16x2 LCD
             print("IN")
-        else:s
+        else:
             lcd_uart.write(b"OUT                             ")  # For 16x2 LCD
             print("OUT")
         
