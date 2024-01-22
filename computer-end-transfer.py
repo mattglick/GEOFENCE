@@ -1,14 +1,15 @@
 import time
-import serial
+import serial # pip install pyserial
 import csv
 
-coordinateFilename = "coordinates"
+coordinateFilename = "volley"
+# Options: armsSide, baseball, volley, road
 
 def initialize():
     ser = 0
     while ser == 0:
         try:
-            ser = serial.Serial('COM8', 9600)  # open serial port
+            ser = serial.Serial('COM3', 9600)  # change to serial port the pi is connected to
         except:
             print("Busy Port: Try closing Raspberry Pi IDE(Thonny)")
             time.sleep(0.3)
@@ -23,7 +24,7 @@ def serialWrite(x, ser):
     print(f"Sending Command: [{cmd}]")
     ser.write(cmd.encode()) # Encodes cmd to transfer to pico
     time.sleep(0.05)
-
+    
     reply = b''
 
     for _ in range(len(cmd)):
@@ -60,7 +61,10 @@ def get_coordinates():
   new_data = []
   for row in range(len(data)):
     for col in range(len(data[row])):
-      new_data.append(data[row][col])
+      if (data[row][col] == "OUTER" or data[row][col] == "INNER"):
+        new_data.append(data[row][col])
+      else:
+        new_data.append(str(abs(float(data[row][col]))))
 
   big_string = ', '.join(new_data) # Turns coordinates.csv file into one long string to make data transfer easier
   # Could transfer coordinates one at a time using a loop if that turns out to be easier
