@@ -340,6 +340,7 @@ if __name__ == '__main__':
         
         #while (latitude_avg == 0 and longitude_avg == 0):
         latitude_avg, longitude_avg = get_current_location(gps_uart)    # Gets location info
+        
 
         lcd_uart.write(b"EPICS EVEI                      ")  # For 16x2 LCD
         
@@ -371,7 +372,5 @@ if __name__ == '__main__':
         endTime = time.monotonic()
         #except (ValueError):
         #    print("ValueError: Likely weak signal, try testing outside")
-
-        print("LatOUT: " + str(latitude_avg) + " LongOUT: " + str(longitude_avg))
-        print("Latitude: ", str(latitude_avg) + "  Longitude: ", str(longitude_avg))    # Prints Lat and Long Info
+        print(f"Latitude: {latitude_avg:.10f}   Longitude: {longitude_avg:.10f}")    # Prints Lat and Long Info
         print("GPS Refresh Rate: ", float(endTime - startTime))
