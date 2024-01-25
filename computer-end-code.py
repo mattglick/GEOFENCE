@@ -1,9 +1,12 @@
 import time
+from datetime import date
 import serial # pip install pyserial
 import csv
 
 coordinateFilename = "volley"
 # Options: armsSide, baseball, volley, road
+datetime = str(date.today()) + '_' + time.strftime("%H-%M-%S", time.localtime())
+
 
 def initialize():
     ser = 0
@@ -16,7 +19,7 @@ def initialize():
             pass
     return ser
 
-# Writes variable x to the arduino
+# Writes variable x to the PI
 def serialWrite(x, ser):
     time.sleep(1) # Required to give code time to upload, may need to test with increasing/decreasing it
     cmd = str(x)
@@ -42,11 +45,14 @@ def serialWrite(x, ser):
                 reply += a
             time.sleep(0.01)
         if coordinateTransferred == False:
-            print(f"\nReply was: {reply}")
+            #print(f"\nReply was: {reply}")
             print("\nConnection Confirmed")
             coordinateTransferred = True
-        else:
-            print(f"\n{reply}")
+        if coordinateTransferred:
+            reply = str(reply)
+            print(f"{reply[4:len(reply)-1]}\n")
+            with open(f'datalog{datetime}.txt', 'a') as f:
+                f.write(f'{reply[4:len(reply)-1]}\n')
         reply = b''
 
     ser.close()
