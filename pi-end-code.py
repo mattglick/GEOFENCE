@@ -244,7 +244,7 @@ def get_current_location(gps_uart):
                 #print("in GPGGA2: Latitude: ", latitude  + "  Longitude: ", longitude)
         except (ValueError, IndexError):
             lcd_uart.write(b"Error                           ")  # For 16x2 LCD
-            print("Error: Likely weak signal, try testing outside")
+            print("valueError: Likely no signal from being inside, no GPS antenna connected, or a broken wire")
     
     latitude_avg = (float(latitude_LL) + float(latitude_GA)) / divisor
     longitude_avg = (float(longitude_LL) + float(longitude_GA)) / divisor
