@@ -14,7 +14,7 @@ def initialize():
         try:
             ser = serial.Serial('COM5', 9600)  # change to serial port the pi is connected to
         except:
-            print("Busy Port: Try closing Raspberry Pi IDE(Thonny)")
+            print("Busy Port: Try closing Raspberry Pi IDE(Thonny), or check troubleshooting section of README")
             time.sleep(0.3)
             pass
     return ser
