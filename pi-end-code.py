@@ -213,9 +213,9 @@ def get_current_location(gps_uart):
     longitude_LL = 0
     latitude_GA = 0 
     longitude_GA = 0
-    divisor = 2
+    divisor = 1
 
-    while (latitude_LL == 0 or latitude_GA == 0):
+    while ((latitude_LL==0 and longitude_LL==0) and (latitude_GA==0 and longitude_GA==0)):
             
         time.sleep(0.03)
         str_array = gps_uart.readline()
