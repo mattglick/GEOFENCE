@@ -1,4 +1,4 @@
-    '''
+'''
 ******READ BEFORE RUNNING*******
 Summary of Code:
 This code runs the IMU and GPS code simultaneously and displays their corresponding data.
@@ -213,8 +213,9 @@ def get_current_location(gps_uart):
     longitude_LL = 0
     latitude_GA = 0 
     longitude_GA = 0
-    divisor = 1
-
+    latDivisor = 1
+    lonDivisor = 1
+    
     while ((latitude_LL==0 and longitude_LL==0) and (latitude_GA==0 and longitude_GA==0)):
             
         time.sleep(0.03)
@@ -246,8 +247,14 @@ def get_current_location(gps_uart):
             lcd_uart.write(b"Error                           ")  # For 16x2 LCD
             print("valueError: Likely no signal from being inside, no GPS antenna connected, or a broken wire")
     
-    latitude_avg = (float(latitude_LL) + float(latitude_GA)) / divisor
-    longitude_avg = (float(longitude_LL) + float(longitude_GA)) / divisor
+    if (latitude_LL != 0 and latitude_GA != 0):
+        latDivisor = 2
+    
+    if (longitude_LL != 0 and longitude_GA != 0):
+        lonDivisor = 2
+    
+    latitude_avg = (float(latitude_LL) + float(latitude_GA)) / latDivisor
+    longitude_avg = (float(longitude_LL) + float(longitude_GA)) / lonDivisor
 
     #print("LatIN: " + str(latitude_avg) + " LongIN: " + str(longitude_avg))
     return latitude_avg, longitude_avg
