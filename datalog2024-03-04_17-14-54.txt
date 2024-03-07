@@ -1,0 +1,330 @@
+Raw Input: OUTER, 40.430804669340276, 86.92956032741621, 40.43058416862053, 86.92956435072973, 40.430580085267046, 86.92920493472174, 40.430801606835225, 86.92920359361723, INNER
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.886963
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00684
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00098
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.0
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.0
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00684
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.970947
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00293
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00195
+OUT
+Latitude: 80.8614196777   Longitude: 173.8458251953
+GPS Refresh Rate:  1.00708
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.975098
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00488
+OUT
+Latitude: 80.8614501953   Longitude: 173.8458251953
+GPS Refresh Rate:  1.00684
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.06396
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.978027
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  2.00488
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  2.00586
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.972168
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.94189
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00903
+Error: Likely weak signal, try testing outside
+OUT
+Latitude: 80.8614501953   Longitude: 86.9291687012
+GPS Refresh Rate:  1.03784
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.943848
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00903
+Error: Likely weak signal, try testing outside
+OUT
+Latitude: 80.8614501953   Longitude: 86.9291687012
+GPS Refresh Rate:  1.03296
+OUT
+Latitude: 80.8614501953   Longitude: 173.8458251953
+GPS Refresh Rate:  0.9729
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00879
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.9729
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00317
+Error: Likely weak signal, try testing outside
+OUT
+Latitude: 80.8614501953   Longitude: 86.9291687012
+GPS Refresh Rate:  1.04199
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.950928
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.01001
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.970947
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.999023
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00415
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00195
+Error: Likely weak signal, try testing outside
+OUT
+Latitude: 80.8614501953   Longitude: 86.9291687012
+GPS Refresh Rate:  1.03394
+OUT
+Latitude: 80.8614501953   Longitude: 173.8458251953
+GPS Refresh Rate:  0.975098
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.06299
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.977051
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  5.00806
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.972168
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00391
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00488
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  3.01416
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.98291
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  4.01001
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.97583
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.01099
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  2.00806
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.975098
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00293
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.0022
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  5.99902
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.01099
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.977051
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.0061
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  2.00513
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.978027
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00513
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.01001
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.97998
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  2.0061
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.0061
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.979004
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.01611
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.974121
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00195
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00708
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  3.00513
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.978027
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00488
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00586
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00293
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.981934
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.01001
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  0.979004
+OUT
+Latitude: 80.8614501953   Longitude: 173.8583374023
+GPS Refresh Rate:  1.01294
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  2.01001
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.97583
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  2.00586
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  2.979
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00684
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  2.01294
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.976074
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.01904
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.981934
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.01392
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.970947
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00903
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  2.01489
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.977051
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00806
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.01123
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.976807
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  2.01294
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.971924
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00781
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  2.00781
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00781
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.976807
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  2.00879
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00391
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.978027
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00708
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.01318
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  0.977051
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.98486
+OUT
+Latitude: 80.8614196777   Longitude: 173.8583374023
+GPS Refresh Rate:  1.00879
+OUT
