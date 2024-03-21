@@ -35,6 +35,8 @@ import board
 import adafruit_bno055
 import supervisor
 
+import math
+
 INT_MAX = 10000
 
 # Creates coordinate point struct
@@ -313,6 +315,31 @@ def dataReceive():
 
     return outerList, innerList
 
+def imu_update(latAvg, longAvg, time_interval):
+    earth_radius = 6371000  # Earth's radius in meters
+
+    velocity_x = 0
+    velocity_y = 0
+
+    imu_acceleration_x, imu_acceleration_y, imu_acceleration_z = sensor.linear_acceleration
+
+    # Velocity Estimation
+    velocity_x += imu_acceleration_x * time_interval
+    velocity_y += imu_acceleration_y * time_interval
+
+    # Position Estimation
+    latitude_change = velocity_x * time_interval / earth_radius
+    longitude_change = velocity_y * time_interval / (earth_radius * math.cos(latAvg))
+
+    # Update latitude and longitude
+    latAvg += latitude_change
+    longAvg += longitude_change
+
+    print("Latitude:", latAvg, "Longitude:", longAvg)
+
+    return latAvg, longAvg
+    
+
 if __name__ == '__main__':
 
     outerPolygon, innerPolygon = dataReceive()
@@ -337,6 +364,9 @@ if __name__ == '__main__':
     (40.430835, 86.916097)
     ]
     '''
+
+    imu_update_points = 1
+    imu_time_interval = 0.1
     
     while True:
         #try:
@@ -347,6 +377,10 @@ if __name__ == '__main__':
         
         #while (latitude_avg == 0 and longitude_avg == 0):
         latitude_avg, longitude_avg = get_current_location(gps_uart)    # Gets location info
+
+        for i in range(imu_update_points):
+            time.sleep(imu_time_interval)
+            latitude_avg, longitude_avg = imu_update(latitude_avg, longitude_avg, imu_time_interval)
         
 
         lcd_uart.write(b"EPICS EVEI                      ")  # For 16x2 LCD
