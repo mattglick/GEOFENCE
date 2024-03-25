@@ -3,7 +3,7 @@ from datetime import date
 import serial # pip install pyserial
 import csv
 
-coordinateFilename = "volley"
+coordinateFilename = "coordinates"
 # Options: armsSide, baseball, volley, road
 datetime = str(date.today()) + '_' + time.strftime("%H-%M-%S", time.localtime())
 
@@ -11,7 +11,7 @@ def initialize():
     ser = 0
     while ser == 0:
         try:
-            ser = serial.Serial('COM3', 9600)  # change to serial port the pi is connected to
+            ser = serial.Serial('COM5', 9600)  # change to serial port the pi is connected to
         except:
             print("Busy Port: Try closing Raspberry Pi IDE(Thonny) or change \"COM\" parameter on line 14")
             time.sleep(0.3)
