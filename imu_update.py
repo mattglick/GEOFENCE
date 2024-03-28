@@ -315,7 +315,7 @@ def dataReceive():
 
     return outerList, innerList
 
-def imu_update(latAvg, longAvg, time_interval):
+def imu_update(latAvg, longAvg, time_interval, time):
     earth_radius = 6371000  # Earth's radius in meters
 
     velocity_x = 0
@@ -335,8 +335,10 @@ def imu_update(latAvg, longAvg, time_interval):
     latAvg += latitude_change
     longAvg += longitude_change
 
+    endTime = time.monotonic()
     print("IMU UPDATE")
     print("Latitude:", latAvg, "Longitude:", longAvg)
+    print("IMU Refresh Rate: ", float(endTime - time))
 
     return latAvg, longAvg
     
@@ -387,15 +389,18 @@ if __name__ == '__main__':
         
         #while (latitude_avg == 0 and longitude_avg == 0):
         latitude_avg, longitude_avg = get_current_location(gps_uart)    # Gets location info
+        endTime = time.monotonic()
 
         print("GPS POINT BEFORE IMU UPDATES")
         print(f"Latitude: {latitude_avg:.10f}   Longitude: {longitude_avg:.10f}")    # Prints Lat and Long Info
         print("GPS Refresh Rate: ", float(endTime - startTime))
 
         for i in range(imu_update_points):
+            startTime = time.monotonic()
             time.sleep(imu_time_interval)
-            latitude_avg, longitude_avg = imu_update(latitude_avg, longitude_avg, imu_time_interval)
+            latitude_avg, longitude_avg = imu_update(latitude_avg, longitude_avg, imu_time_interval, startTime)
         
+        startTime = time.monotonic()
 
         lcd_uart.write(b"EPICS EVEI                      ")  # For 16x2 LCD
         
