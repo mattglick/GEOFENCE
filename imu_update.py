@@ -315,7 +315,7 @@ def dataReceive():
 
     return outerList, innerList
 
-def imu_update(latAvg, longAvg, time_interval, time):
+def imu_update(latAvg, longAvg, time_interval, startTime):
     earth_radius = 6371000  # Earth's radius in meters
 
     velocity_x = 0
@@ -338,7 +338,7 @@ def imu_update(latAvg, longAvg, time_interval, time):
     endTime = time.monotonic()
     print("IMU UPDATE")
     print("Latitude:", latAvg, "Longitude:", longAvg)
-    print("IMU Refresh Rate: ", float(endTime - time))
+    print("IMU Refresh Rate: ", float(endTime - startTime))
 
     return latAvg, longAvg
     
