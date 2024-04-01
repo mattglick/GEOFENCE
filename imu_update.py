@@ -323,35 +323,38 @@ def imu_update(latAvg, longAvg, time_interval, startTime):
 
     imu_acceleration_x, imu_acceleration_y, imu_acceleration_z = sensor.linear_acceleration
 
-    print("Accelerations")
-    print(f"Acceleration X: {imu_acceleration_x:.10f}   Acceleration Y: {imu_acceleration_y:.10f}")
-    print("Sensor Linear Accelearion")
-    print(sensor.linear_acceleration)
+    #print("Accelerations")
+    #print(f"Acceleration X: {imu_acceleration_x:.10f}   Acceleration Y: {imu_acceleration_y:.10f}")
+    #print("Sensor Linear Accelearion")
+    #print(sensor.linear_acceleration)
 
     # Velocity Estimation
     velocity_x += imu_acceleration_x * time_interval
     velocity_y += imu_acceleration_y * time_interval
 
-    print("VELOCITIES")
-    print(f"Velocity X: {velocity_x:.10f}   Velocity Y: {velocity_y:.10f}") 
+    #print("VELOCITIES")
+    #print(f"Velocity X: {velocity_x:.10f}   Velocity Y: {velocity_y:.10f}") 
 
     # Position Estimatio
     latitude_change = velocity_x * time_interval / earth_radius
     longitude_change = velocity_y * time_interval / (earth_radius * math.cos(latAvg))
 
+    print("LAT AVG/LONGAVG")
+    print(f"Latitude: {latAvg:.10f}   Longitude: {longAvg:.10f}")
+
     print("CHANGES")
     print(f"Latitude Change: {latitude_change:.10f}   Longitude Change: {longitude_change:.10f}")  
 
     # Update latitude and longitude
-    latAvg += latitude_change
-    longAvg += longitude_change
+    newlatAvg = latAvg + latitude_change
+    newlongAvg = longAvg + longitude_change
 
     endTime = time.monotonic()
     print("IMU UPDATE")
-    print(f"Latitude: {latAvg:.10f}   Longitude: {longAvg:.10f}")  
+    print(f"Latitude: {newlatAvg:.10f}   Longitude: {newlongAvg:.10f}")  
     print("IMU Refresh Rate: ", float(endTime - startTime))
 
-    return latAvg, longAvg
+    return newlatAvg, newlongAvg
     
 
 if __name__ == '__main__':
@@ -410,8 +413,8 @@ if __name__ == '__main__':
             startTime = time.monotonic()
             time.sleep(imu_time_interval)
             latitude_avg, longitude_avg = imu_update(latitude_avg, longitude_avg, imu_time_interval, startTime)
-            print("TEMP PRINT STATEMENT")
-            print(f"Latitude: {latitude_avg:.10f}   Longitude: {longitude_avg:.10f}")
+            #print("TEMP PRINT STATEMENT")
+            #print(f"Latitude: {latitude_avg:.10f}   Longitude: {longitude_avg:.10f}")
         
         startTime = time.monotonic()
 
