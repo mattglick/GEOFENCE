@@ -48,7 +48,7 @@ echo "LATITUDE,LONGITUDE" > "$file_to_write"
 # 2. Remove the headers for each subsection, and separate each section by a newline.
 
 if has_imu_param "$*"; then
-	awk '!/Refresh/ && (/IMU/ || /Lat/)' "$file_to_read" | sed -e '/BEFORE/c\\' -e '/IMU/d' | tail -n +2 | awk '{if ($1 == "")print ""; else print $2 "," $4}' | awk '!NF{$0="<NEW>"}1' | cat <(echo "<NEW>") - > "$temp_file"
+sed '/AVG/,+1 d' "$file_to_read" | sed '/CHANGES/,+1 d' | awk '!/Refresh/ && (/IMU/ || /Lat/)' | sed -e '/BEFORE/c\\' -e '/IMU/d' | tail -n +2 | awk '{if ($1 == "")print ""; else print $2 "," $4}' | awk '!NF{$0="<NEW>"}1' | cat <(echo "<NEW>") - > "$temp_file"
 else
 
 # 1. Find the relevant lines of the file (Lat/Long and Refresh rate)
