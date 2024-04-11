@@ -35,9 +35,9 @@ for i in range(len(sections)):
 
     for i in range(0, lat.size):
         if (i == 0 or i == lat.size-1):
-                plt.plot(long[i],lat[i], "x")
+                plt.plot(long[i],lat[i], "or")
         else:
-                plt.plot(long[i], lat[i], "ks")
+                plt.plot(long[i], lat[i], "bx")
 
 plt.xlabel("Longitude")
 plt.ylabel("Latitude")
