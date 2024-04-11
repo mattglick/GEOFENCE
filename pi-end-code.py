@@ -35,6 +35,10 @@ import board
 import adafruit_bno055
 import supervisor
 
+import machine
+import select
+import sys
+
 INT_MAX = 10000
 
 # Creates coordinate point struct
@@ -286,9 +290,12 @@ def imu_stuff():
   '''
 
 def dataReceive():
+    poll_obj = select.poll()
+    # Register sys.stdin (standard input) for monitoring read events with priority 1
+    poll_obj.register(sys.stdin,1)
     print("listening...")
     while True:
-        if supervisor.runtime.serial_bytes_available:
+        if poll_obj.poll(0):        
             value = input().strip()
             # Sometimes Windows sends an extra (or missing) newline - ignore them
             if value == "":
@@ -350,7 +357,7 @@ if __name__ == '__main__':
     
     while True:
         #try:
-        startTime = time.monotonic()
+        startTime = time.ticks_ms()
         #imu_stuff()                                                     # Displays IMU Stuff
         #time.sleep(0.3)
         latitude_avg, longitude_avg = 0,0
@@ -386,7 +393,7 @@ if __name__ == '__main__':
         
         #lcd_uart.write(b'                ')  # Clear display
         
-        endTime = time.monotonic()
+        endTime = time.ticks_ms()
         #except (ValueError):
         #    print("ValueError: Likely weak signal, try testing outside")
         print(f"Latitude: {latitude_avg:.10f}   Longitude: {longitude_avg:.10f}")    # Prints Lat and Long Info
