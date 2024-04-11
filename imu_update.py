@@ -37,6 +37,10 @@ import supervisor
 
 import math
 
+import machine
+import select
+import sys
+
 INT_MAX = 10000
 
 # Creates coordinate point struct
@@ -288,9 +292,12 @@ def imu_stuff():
   '''
 
 def dataReceive():
+    poll_obj = select.poll()
+    # Register sys.stdin (standard input) for monitoring read events with priority 1
+    poll_obj.register(sys.stdin,1)
     print("listening...")
     while True:
-        if supervisor.runtime.serial_bytes_available:
+        if poll_obj.poll(0):
             value = input().strip()
             # Sometimes Windows sends an extra (or missing) newline - ignore them
             if value == "":
@@ -335,10 +342,10 @@ def imu_update(latAvg, longAvg, time_interval, startTime):
     #print("VELOCITIES")
     #print(f"Velocity X: {velocity_x:.10f}   Velocity Y: {velocity_y:.10f}") 
 
-    # Position Estimatio
-    latitude_change = velocity_x * time_interval / earth_radius
-    longitude_change = velocity_y * time_interval / (earth_radius * math.cos(latAvg))
-
+    # Position Estimation
+    latitude_change = ((velocity_x * time_interval) / earth_radius) * (180 / math.pi)
+    longitude_change = ((velocity_y * time_interval) / earth_radius) * (180 / math.pi) / math.cos(math.radians(latAvg * (math.pi / 180)))
+    
     print("LAT AVG/LONGAVG")
     print(f"Latitude: {latAvg:.10f}   Longitude: {longAvg:.10f}")
 
@@ -349,7 +356,7 @@ def imu_update(latAvg, longAvg, time_interval, startTime):
     newlatAvg = latAvg + latitude_change
     newlongAvg = longAvg + longitude_change
 
-    endTime = time.monotonic()
+    endTime = time.ticks_ms()
     print("IMU UPDATE")
     print(f"Latitude: {newlatAvg:.10f}   Longitude: {newlongAvg:.10f}")  
     print("IMU Refresh Rate: ", float(endTime - startTime))
@@ -396,27 +403,27 @@ if __name__ == '__main__':
     
     while True:
         #try:
-        startTime = time.monotonic()
+        startTime = time.ticks_ms()
         #imu_stuff()                                                     # Displays IMU Stuff
         #time.sleep(0.3)
         latitude_avg, longitude_avg = 0,0
         
         #while (latitude_avg == 0 and longitude_avg == 0):
         latitude_avg, longitude_avg = get_current_location(gps_uart)    # Gets location info
-        endTime = time.monotonic()
+        endTime = time.ticks_ms()
 
         print("GPS POINT BEFORE IMU UPDATES")
         print(f"Latitude: {latitude_avg:.10f}   Longitude: {longitude_avg:.10f}")    # Prints Lat and Long Info
         print("GPS Refresh Rate: ", float(endTime - startTime))
 
         for i in range(imu_update_points):
-            startTime = time.monotonic()
+            startTime = time.ticks_ms()
             time.sleep(imu_time_interval)
             latitude_avg, longitude_avg = imu_update(latitude_avg, longitude_avg, imu_time_interval, startTime)
             #print("TEMP PRINT STATEMENT")
             #print(f"Latitude: {latitude_avg:.10f}   Longitude: {longitude_avg:.10f}")
         
-        startTime = time.monotonic()
+        startTime = time.ticks_ms()
 
         lcd_uart.write(b"EPICS EVEI                      ")  # For 16x2 LCD
         
@@ -445,7 +452,7 @@ if __name__ == '__main__':
         
         #lcd_uart.write(b'                ')  # Clear display
         
-        endTime = time.monotonic()
+        endTime = time.ticks_ms()
         #except (ValueError):
         #    print("ValueError: Likely weak signal, try testing outside")
         print("GPS POINT AFTER IMU UPDATES")
