@@ -11,10 +11,10 @@ def initialize():
     ser = 0
     while ser == 0:
         try:
-            ser = serial.Serial('COM5', 9600)  # change to serial port the pi is connected to
+            ser = serial.Serial('COM6', 9600)  # change to serial port the pi is connected to
         except:
             print("Busy Port: Try closing Raspberry Pi IDE(Thonny) or change \"COM\" parameter on line 14")
-            time.sleep(0.3)
+            time.sleep(0.3) 
             pass
     return ser
 
@@ -42,7 +42,7 @@ def serialWrite(x, ser):
 
             else:
                 reply += a
-            time.sleep(0.01)
+            #time.sleep(0.001)
         if coordinateTransferred == False:
             #print(f"\nReply was: {reply}")
             print("\nConnection Confirmed")
