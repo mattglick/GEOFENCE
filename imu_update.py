@@ -346,11 +346,11 @@ def imu_update(latAvg, longAvg, time_interval, startTime):
     latitude_change = ((velocity_x * time_interval) / earth_radius) * (180 / math.pi)
     longitude_change = ((velocity_y * time_interval) / earth_radius) * (180 / math.pi) / math.cos(math.radians(latAvg * (math.pi / 180)))
     
-    print("LAT AVG/LONGAVG")
-    print(f"Latitude: {latAvg:.10f}   Longitude: {longAvg:.10f}")
+    #print("LAT AVG/LONGAVG")
+    #print(f"Latitude: {latAvg:.10f}   Longitude: {longAvg:.10f}")
 
-    print("CHANGES")
-    print(f"Latitude Change: {latitude_change:.10f}   Longitude Change: {longitude_change:.10f}")  
+    #print("CHANGES")
+    #print(f"Latitude Change: {latitude_change:.10f}   Longitude Change: {longitude_change:.10f}")  
 
     # Update latitude and longitude
     newlatAvg = latAvg + latitude_change
@@ -359,7 +359,7 @@ def imu_update(latAvg, longAvg, time_interval, startTime):
     endTime = time.ticks_ms()
     print("IMU UPDATE")
     print(f"Latitude: {newlatAvg:.10f}   Longitude: {newlongAvg:.10f}")  
-    print("IMU Refresh Rate: ", float(endTime - startTime))
+    #print("IMU Refresh Rate: ", float(endTime - startTime))
 
     return newlatAvg, newlongAvg
     
@@ -398,7 +398,7 @@ if __name__ == '__main__':
     '''
     
 
-    imu_update_points = 1
+    imu_update_points = 10
     imu_time_interval = 0.1
     
     while True:
@@ -415,11 +415,26 @@ if __name__ == '__main__':
         print("GPS POINT BEFORE IMU UPDATES")
         print(f"Latitude: {latitude_avg:.10f}   Longitude: {longitude_avg:.10f}")    # Prints Lat and Long Info
         print("GPS Refresh Rate: ", float(endTime - startTime))
+        
+        if is_within_polygon(outerPolygon, (float(latitude_avg), float(longitude_avg))) is True and is_within_polygon(innerPolygon, (float(latitude_avg), float(longitude_avg))) is False:
+            lcd_uart.write(b"IN                              ")  # For 16x2 LCD
+            print("IN")
+        else:
+            lcd_uart.write(b"OUT                             ")  # For 16x2 LCD
+            print("OUT")
 
         for i in range(imu_update_points):
             startTime = time.ticks_ms()
             time.sleep(imu_time_interval)
             latitude_avg, longitude_avg = imu_update(latitude_avg, longitude_avg, imu_time_interval, startTime)
+
+            if is_within_polygon(outerPolygon, (float(latitude_avg), float(longitude_avg))) is True and is_within_polygon(innerPolygon, (float(latitude_avg), float(longitude_avg))) is False:
+                lcd_uart.write(b"IN                              ")  # For 16x2 LCD
+                print("IN")
+            else:
+                lcd_uart.write(b"OUT                             ")  # For 16x2 LCD
+                print("OUT")
+                
             #print("TEMP PRINT STATEMENT")
             #print(f"Latitude: {latitude_avg:.10f}   Longitude: {longitude_avg:.10f}")
         
@@ -429,12 +444,7 @@ if __name__ == '__main__':
         
         #lcd_uart.write(b'                ')  # Clear display
         
-        if is_within_polygon(outerPolygon, (float(latitude_avg), float(longitude_avg))) is True and is_within_polygon(innerPolygon, (float(latitude_avg), float(longitude_avg))) is False:
-            lcd_uart.write(b"IN                              ")  # For 16x2 LCD
-            print("IN")
-        else:
-            lcd_uart.write(b"OUT                             ")  # For 16x2 LCD
-            print("OUT")
+ 
         
         #lcd_uart.write(b'                ')  # Clear display
         
