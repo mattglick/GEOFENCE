@@ -2,9 +2,9 @@
 
 Computer-End(Python) - Geofence-Scripts -> computer-end-code.py
 
-Pi-End(circuit python) - Geofence Scripts -> pi-end-code.py 
+Pi-End(MicroPython) - Geofence Scripts -> imu_update.py (pi-end-code.py is the older version that is now deprecated)
 
-Pi end code has everything you need to run the geofence
+imu_update.py has everything you need to run the geofence (Instructions in Transition Document and also important comments at the top of the file).
 
 To Test: 
 1. Download Thonny and install required libraries if they aren't already installed.
@@ -22,6 +22,6 @@ To Test:
 Troubleshooting:
 "Busy Port: Try closing Raspberry Pi IDE(Thonny)", then that means something is interupting the port the Pi is connected to. This would be caused if you kept Thonny open while running the computer end code. You could also have other serial monitors or serial data printers such as the one in the Arduino IDE that is preventing you from transferring data. As mentioned in step 5, you could also be using the "serial" library, rather than the "pyserial" library. Make sure you delete serial libary if you have that installed. You could also have the wrong COM port selected in the computer end code as discussed in step 7.
 
-"valueError: Likely no signal" comes from the Pi End Code. It is a ValueError, and the most likely culprits are being somewhere where the GPS can't get satellite data, such as too close to a building or inside. It could also indicate a problem with one of the connections, most likely the GPS connection. Make sure there are no cut or disconnected wires and the GPS antenna is firmly connected to the GPS module on the geofence.
+"alueError: Likely no signal from being inside, no GPS antenna connected, or a broken wire" comes from the impu_update.py code. It is a ValueError, and the most likely culprits are being somewhere where the GPS can't get satellite data, such as too close to a building or inside. It could also indicate a problem with one of the connections, most likely the GPS connection. Make sure there are no cut or disconnected wires and the GPS antenna is firmly connected to the GPS module on the geofence. It could also be that the GPS needs a few seconds to connect to satellites when first turned on (usually five seconds at worst).
 
-Contact jerome1@purdue.edu if any questions
+Contact jerome1@purdue.edu or anfowler2001@gmail.com for any questions
