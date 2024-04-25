@@ -42,7 +42,7 @@ def serialWrite(x, ser):
 
             else:
                 reply += a
-            #time.sleep(0.001)
+            #time.sleep(0.001) This time.sleep can be added back for readability while live-testing; however it could delay GPS/IMU points from showing up in the logfile
         if coordinateTransferred == False:
             #print(f"\nReply was: {reply}")
             print("\nConnection Confirmed")

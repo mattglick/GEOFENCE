@@ -8,25 +8,30 @@ Only one Pi has all of the necessary installed and therefore is fully functional
 Working on the others will not work unless all of the libraries are there. See the 
 transition document for more information on this.
 There is also a specific wiring needed for everything,
-this would be in the transition document. 
+this would be in the transition document.
 
 Thing To Know When Modifying Code:
-This code is running on CircuitPython (not MicroPython - they're slightly different),
-therefore any modifications must be done in CircuitPython. It's not much different than
+This code is running on MicroPython (not CircuitPython - they're slightly different),
+therefore any modifications must be done in MicroPython. It's not much different than
 regular Python, it's just the implementation of modules that's wonky. Since it is running
-on CircuitPython, only one file can be run at a time, so everything must be located here.
-You can't reference multiple files, it will not work. 
+on MicroPython, only one file can be run at a time, so everything must be located here.
+You can't reference multiple files, it will not work.
 
-Why did we choose CircuitPython instead of Micropython?:
-We tried tirelessly to get the IMU to work with MicroPython - literally multiple hours
-worth of work. We were not able to install the 'busio' library  in MicroPython so that
-basically made it impossible to integrate the IMU. CircuitPython was the only way we got
-the IMU to work. Unless you want to spend an outrageous amount of time getting the IMU 
-integrated in MicroPython, I would suggest keeping it in CircuitPython.
+Why did we choose MicroPython instead of CircuitPython?:
+We needed access to double precision values for the GPS coordiantes contained in this document. 
+MicroPython and CircuitPython both use floating point values as a default, which causes not enough precision
+when using coordinates. This can cause graphs to show a "grid" pattern. To use double precision instead of floating point,
+you can modify MicroPython's source files before flashing them to a microcontroller. See Drew Fowler or Aadhavan Srinivasan's
+notebooks from Spring 2024 for instructions and more information.
+
+Current Bugs:
+Sometimes there are "zero" values read by the GPS sensor (24/10,405 points in most recent test).
+Number of IMU update points and IMU refresh rate need to be optimized.
+Could also fix FCD screen messages, although these messages are primarily for testing purposes - final deliverable will not have an LCD screen.
 
 Contact Info:
-Drew Fowler: fowler52@purdue.edu
-Paloma Arellano: palomasemailis@gmail.com
+Drew Fowler: fowler52@purdue.edu / anfowler2001@gmail.com
+Aadhavan Srinivasan: srini193@purdue.edu
 '''
 
 import time
@@ -135,18 +140,7 @@ def is_within_polygon(points:list, p:list) -> bool:
         
     return (count % 2 == 1)
 
-"""
-if __name__ == '__main__':
-    polygon = [(40.430713, 86.915236),(40.430751, 86.915264),(40.430808, 86.915169),(40.430751, 86.915188)]
-    p1 = [40.43120397177199, -86.91496015156082]
-    if (is_within_polygon(polygon, p1)):
-        print("True")
-    else:
-        print("False")
-"""
-
-# Turns on the LCD - currently not integrated correctly
-# This function is still running on MicroPython so it would need to be changed to CircuitPython
+# Turns on the LCD
 def initialize_lcd(backlight_red, backlight_green, backlight_blue):
     #lcd_uart = UART(1, baudrate=9600, tx=Pin(4), rx=Pin(5))         # This line specifically should be changed to CircuitPython
     lcd_uart = busio.UART(board.GP4, board.GP5, baudrate=9600)
@@ -164,7 +158,6 @@ def initialize_lcd(backlight_red, backlight_green, backlight_blue):
 
 # Initializes GPS
 def initialize_gps():
-    #return UART(0, baudrate=9600, tx=Pin(12), rx=Pin(13))
     return busio.UART(baudrate=9600, tx=board.GP12, rx=board.GP13, bits=8, stop=1, timeout=0, receiver_buffer_size=64)
 
 # Gets Latitude
@@ -179,40 +172,6 @@ def get_longitude(str_array, index2):
     longMin = float(str_array[index2][3: 11]) / 60
     return '%f' % (float(longDeg) + float(longMin))
 
-"""
-def get_current_location(gps_uart):
-    while True:
-        while not gps_uart.any():
-            pass
-        time.sleep_ms(30)
-        str_array = gps_uart.readline()
-        print(str_array)
-        try:
-            str_array = str_array.decode("utf-8")
-            time.sleep_ms(30)
-            str_array = str_array.split(",")
-            print(str_array)
-        except:
-            pass
-        
-        if str_array[0] is '$GPGLL':
-            #print(str_array)
-            #str_array = str_array.split(",")
-            print("in GPGLL")
-            #lcd_uart.write("in GNGLL")
-            latitude = get_latitude(str_array, 1)
-            longitude = get_longitude(str_array, 3)
-            print("in GPGLL2")
-            #lcd_uart.write("in GNGLL2")
-
-        elif str_array[0] is '$GPGGA':
-            print("in GNPGA")
-            #lcd_uart.write("in GNGGA")
-            latitude = get_latitude(str_array, 2)
-            longitude = get_longitude(str_array, 4)
-            print("in GPGGA2")
-            return latitude, longitude
-"""
 # Gets Current Location
 def get_current_location(gps_uart):
     latitude_LL = 0
@@ -276,7 +235,7 @@ def temperature():
   last_val = result
   return result
 
-# Displays IMU sensor information
+# Displays IMU sensor information - Used Primarily for Testing Purposes
 def imu_stuff():
   '''
   print("Temperature: {} degrees C".format(sensor.temperature))
@@ -305,7 +264,7 @@ def dataReceive():
             print("Raw Input: {}".format(value))
             break
 
-    # For testing purposes
+    # Temporary Geofence For testing purposes - Use computer-end-code.py for real Geofence Values
     #value = "OUTER, 40.39123253146508, -86.82833099365233, 40.365601883498044, -86.97458648681639, 40.42417189314546, -87.00067901611327, 40.468065962237894, -86.85236358642577, 40.428353515662465, -86.79743194580077, INNER"
 
     coordinateList = value.split(", ")
@@ -377,7 +336,7 @@ if __name__ == '__main__':
     lcd_uart = initialize_lcd(backlight_red=255, backlight_green=1, backlight_blue=255)
     
     lcd_uart.write(b"Connecting to GPS...            ")  # For 16x2 LCD
-    #time.sleep(1.5)
+    #time.sleep(1.5) - Can add back in to display message for readability on LCD screen. The GPS sensor needs a few seconds to connect usually anyways. 
     
     # Example polygon for testing
     
@@ -397,18 +356,15 @@ if __name__ == '__main__':
     ]
     '''
     
-
-    imu_update_points = 10
-    imu_time_interval = 0.1
+    # CHANGE IMU SETTINGS HERE
+    imu_update_points = 10 # This value can be further optimized. If set to zero, there will be no IMU points (only GPS points). 
+    imu_time_interval = 0.1 # This value can be further optimized. See IMU BNO055 documentation for minimum refresh rate.
     
     while True:
-        #try:
         startTime = time.ticks_ms()
-        #imu_stuff()                                                     # Displays IMU Stuff
-        #time.sleep(0.3)
+        #imu_stuff() Displays IMU Stuff
         latitude_avg, longitude_avg = 0,0
         
-        #while (latitude_avg == 0 and longitude_avg == 0):
         latitude_avg, longitude_avg = get_current_location(gps_uart)    # Gets location info
         endTime = time.ticks_ms()
 
@@ -442,12 +398,7 @@ if __name__ == '__main__':
 
         lcd_uart.write(b"EPICS EVEI                      ")  # For 16x2 LCD
         
-        #lcd_uart.write(b'                ')  # Clear display
-        
- 
-        
-        #lcd_uart.write(b'                ')  # Clear display
-        
+        # FUTURE TEAM COULD FIX THIS
         ###### This would print the information to the LCD - right now this messes up the spacing on the LCD for IN and OUT messages
         #time.sleep(1.5)
         #lcd_uart.write(b"Current Location:               ")  # For 16x2 LCD
@@ -463,8 +414,6 @@ if __name__ == '__main__':
         #lcd_uart.write(b'                ')  # Clear display
         
         endTime = time.ticks_ms()
-        #except (ValueError):
-        #    print("ValueError: Likely weak signal, try testing outside")
         print("GPS POINT AFTER IMU UPDATES")
         print(f"Latitude: {latitude_avg:.10f}   Longitude: {longitude_avg:.10f}")    # Prints Lat and Long Info
         print("GPS Refresh Rate: ", float(endTime - startTime))
