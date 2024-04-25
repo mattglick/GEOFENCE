@@ -1,3 +1,10 @@
+# EPICS EVEI
+# 
+# This script is used to create plots of data that only uses GPS.
+# IT SHOULD BE IGNORED, unless you want to test out the old code.
+# 'plot_imu_data.py' plots graphs of data with IMU, so YOU SHOULD
+# USE THAT INSTEAD.
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd

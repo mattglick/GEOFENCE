@@ -1,3 +1,15 @@
+# EPICS EVEI
+#
+# This python script is used to create plots of data that used IMU.
+# You need to run it with the CSV file that was created with 'coords_to_csv.sh'
+# (which must be run with the '--imu' flag). It is run like so:
+# 
+# python plot_imu_data.py <csvfile>
+#
+# where 'csvfile' is the name of the CSV file that was created using 'coords_to_csv.sh'.
+#
+# For questions, comments or concerns, reach out to Aadhavan Srinivasan (srini193@purdue.edu).
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd

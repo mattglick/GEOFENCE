@@ -9,6 +9,17 @@
 # To run the script, first run 'chmod +x coords_to_csv.sh' and then
 # run './coords_to_csv.sh <logfile>', replacing <logfile> with the
 # name of the actual log file.
+#
+# ---------------------------
+# IMPORTANT: READ BELOW!!!
+# ---------------------------
+# If you are running this script on a logfile that used IMU
+# (which should be all of your log files), run the script with the '--imu'
+# flag. The command would then look like the following:
+#
+# ./coords_to_csv.sh --imu <logfile>
+#
+# For questions, commments or concerns, reach out to Aadhavan Srinivasan (srini193@purdue.edu).
 
 # Exit the program if any command fails. Useful for debugging purposes.
 set -xeo pipefail
