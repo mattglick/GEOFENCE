@@ -1,6 +1,6 @@
 '''
 ******READ BEFORE RUNNING*******
-THIS CODE IS DEPRECATED. USE imu_update.py for the most recent working code.
+THIS CODE IS DEPRECATED. USE imu_update.py FOR THE MOST RECENT WORKING CODE.
 
 Summary of Code:
 This code runs the IMU and GPS code simultaneously and displays their corresponding data.
@@ -10,18 +10,21 @@ Only one Pi has all of the necessary installed and therefore is fully functional
 Working on the others will not work unless all of the libraries are there. See the 
 transition document for more information on this.
 There is also a specific wiring needed for everything,
-this would be in the transition document.
+this would be in the transition document. 
 
 Thing To Know When Modifying Code:
-This code is running on MicroPython (not CircuitPython - they're slightly different),
-therefore any modifications must be done in MicroPython. It's not much different than
+This code is running on CircuitPython (not MicroPython - they're slightly different),
+therefore any modifications must be done in CircuitPython. It's not much different than
 regular Python, it's just the implementation of modules that's wonky. Since it is running
-on MicroPython, only one file can be run at a time, so everything must be located here.
-You can't reference multiple files, it will not work.
+on CircuitPython, only one file can be run at a time, so everything must be located here.
+You can't reference multiple files, it will not work. 
 
-Why did we choose MicroPython instead of CircuitPython?:
-We needed access to double precision values for the GPS coordiantes contained in this document. 
-MicroPython and CircuitPython both use floating point values as a default, which causes 
+Why did we choose CircuitPython instead of Micropython?:
+We tried tirelessly to get the IMU to work with MicroPython - literally multiple hours
+worth of work. We were not able to install the 'busio' library  in MicroPython so that
+basically made it impossible to integrate the IMU. CircuitPython was the only way we got
+the IMU to work. Unless you want to spend an outrageous amount of time getting the IMU 
+integrated in MicroPython, I would suggest keeping it in CircuitPython.
 
 Contact Info:
 Drew Fowler: fowler52@purdue.edu
